@@ -839,6 +839,157 @@
       background: linear-gradient(#ff8c42, #ff6b9d);
       border-radius: 999px;
     }
+
+    /* 双人配对测试 */
+    .pair-wrap {
+      margin-top: 22px;
+      padding: 32px 28px;
+    }
+    .pair-title {
+      text-align: center;
+      font-size: 24px;
+      font-weight: 800;
+      margin: 0 0 8px;
+      color: var(--text);
+    }
+    .pair-subtitle {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0 0 28px;
+      line-height: 1.7;
+    }
+    .pair-selectors {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 14px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+    .pair-selector-group label {
+      display: block;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--accent-strong);
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+    .pair-selector-group select {
+      width: 100%;
+      padding: 12px 38px 12px 14px;
+      border: 2px solid var(--line);
+      border-radius: 16px;
+      font-size: 14px;
+      font-family: inherit;
+      background: var(--soft);
+      color: var(--text);
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23ff8c42' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      transition: border-color .2s;
+    }
+    .pair-selector-group select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .pair-vs {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--accent);
+      padding-bottom: 4px;
+    }
+    .pair-btn-row {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+    .pair-result-box {
+      display: none;
+      animation: pairFadeUp .4s ease;
+    }
+    .pair-result-box.show { display: block; }
+    @keyframes pairFadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .pair-result-inner {
+      background: var(--soft);
+      border: 2px solid var(--line);
+      border-radius: 20px;
+      padding: 24px;
+    }
+    .pair-category-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 16px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+    .pair-category-badge.cat-1 { background: rgba(6, 214, 160, 0.15); color: #04a67c; }
+    .pair-category-badge.cat-2 { background: rgba(255, 140, 66, 0.18); color: var(--accent-strong); }
+    .pair-category-badge.cat-3 { background: rgba(255, 107, 157, 0.15); color: #d63870; }
+    .pair-result-title {
+      font-size: 20px;
+      font-weight: 800;
+      margin: 0 0 12px;
+      color: var(--text);
+    }
+    .pair-result-desc {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.9;
+      margin: 0 0 22px;
+    }
+    .pair-type-row {
+      display: flex;
+      gap: 12px;
+    }
+    .pair-type-card {
+      flex: 1;
+      background: var(--panel);
+      border: 2px solid var(--line);
+      border-radius: 16px;
+      padding: 14px 12px;
+      text-align: center;
+    }
+    .pair-type-card-label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .pair-type-card-code {
+      font-size: 17px;
+      font-weight: 900;
+      color: var(--accent-strong);
+    }
+    .pair-type-card-cn {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+    .pair-unknown {
+      background: var(--soft);
+      border: 2px dashed var(--line);
+      border-radius: 16px;
+      padding: 24px 20px;
+      text-align: center;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .pair-unknown strong { color: var(--text); display: block; font-size: 16px; margin-bottom: 6px; }
+    @media (max-width: 600px) {
+      .pair-selectors { grid-template-columns: 1fr; gap: 10px; }
+      .pair-vs { transform: none; }
+      .pair-wrap { padding: 20px 16px; }
+    }
   </style>
 </head>
 <body>
@@ -849,6 +1000,7 @@
         <p class="hero-tagline">全新十五维度人格测试，比星座还准，比算命还好玩 🌈</p>
         <div class="hero-actions hero-actions-single">
           <button id="startBtn" class="btn-primary">🚀 开始测试</button>
+          <button id="pairTestBtn" class="btn-secondary" style="display:none;">💑 双人匹配测试</button>
         </div>
         <div class="intro-meta">
           <span>网站制作人：知微</span>
@@ -928,9 +1080,43 @@
       </div>
     </section>
 
+    <section id="pair-test" class="screen">
+      <div class="pair-wrap card">
+        <h2 class="pair-title">💑 双人配对测试</h2>
+        <p class="pair-subtitle">
+          先各自完成一次 SBTI 测试，记住各自的人格类型<br>
+          再在下方选择，解锁你们的专属配对关系 ✨<br>
+          可能存在没有配对上的情况哦~<br>
+          <span style="font-size:12px;">⚠️ 所有配对均为趣味解读，主打轻松互动，无好坏之分</span>
+        </p>
+        <div class="pair-selectors">
+          <div class="pair-selector-group">
+            <label>我的人格类型</label>
+            <select id="pairType1">
+              <option value="">请选择人格</option>
+            </select>
+          </div>
+          <div class="pair-vs">VS</div>
+          <div class="pair-selector-group">
+            <label>搭档的人格类型</label>
+            <select id="pairType2">
+              <option value="">请选择人格</option>
+            </select>
+          </div>
+        </div>
+        <div class="pair-btn-row">
+          <button id="checkPairBtn" class="btn-primary">🔍 查看配对结果</button>
+        </div>
+        <div id="pairResult" class="pair-result-box"></div>
+        <div class="result-actions" style="margin-top:20px;padding-top:16px;border-top:2px dashed var(--line);">
+          <button id="backFromPairBtn" class="btn-secondary">← 返回首页</button>
+        </div>
+      </div>
+    </section>
+
   </div>
 
-  
+
   <script>
     const dimensionMeta = {
       S1: { name: 'S1 自尊自信', model: '自我模型' },
@@ -1632,7 +1818,8 @@
     const screens = {
       intro: document.getElementById('intro'),
       test: document.getElementById('test'),
-      result: document.getElementById('result')
+      result: document.getElementById('result'),
+      'pair-test': document.getElementById('pair-test')
     };
 
     const questionList = document.getElementById('questionList');
@@ -1891,6 +2078,141 @@
     document.getElementById('submitBtn').addEventListener('click', renderResult);
     document.getElementById('restartBtn').addEventListener('click', () => startTest(false));
     document.getElementById('toTopBtn').addEventListener('click', () => showScreen('intro'));
+
+    // ===== 双人配对测试 =====
+    const PAIR_TYPES = [
+      { code: 'ATM-er', cn: '送钱者',  display: 'ATM（付出型冤种）' },
+      { code: 'BOSS',   cn: '领导者',  display: 'BOSS（领导者）' },
+      { code: 'CTRL',   cn: '拿捏者',  display: 'CTRL（拿捏者）' },
+      { code: 'DEAD',   cn: '死者',    display: 'DEAD（精神死者型）' },
+      { code: 'Dior-s', cn: '屌丝',    display: 'Dior-s（屌丝）' },
+      { code: 'DRUNK',  cn: '酒鬼',    display: 'DRUNK（酒鬼）' },
+      { code: 'FAKE',   cn: '伪人',    display: 'FAKE（伪人面具型）' },
+      { code: 'FUCK',   cn: '草者',    display: 'FUCK（反骨叛逆型）' },
+      { code: 'GOGO',   cn: '行者',    display: 'GOGO（行动派达人）' },
+      { code: 'HHHH',   cn: '傻乐者',  display: 'HHHH（傻乐者）' },
+      { code: 'IMFW',   cn: '废物',    display: 'IMFW（废物）' },
+      { code: 'IMSB',   cn: '傻者',    display: 'IMSB（内耗自责型）' },
+      { code: 'JOKE-R', cn: '小丑',    display: 'JOKER（小丑自愈型）' },
+      { code: 'LOVE-R', cn: '多情者',  display: 'LOVE-R（多情者）' },
+      { code: 'MALO',   cn: '吗喽',    display: 'MALO（吗喽摆烂型）' },
+      { code: 'MONK',   cn: '僧人',    display: 'MONK（僧人）' },
+      { code: 'MUM',    cn: '妈妈',    display: 'MUM（暖心妈妈型）' },
+      { code: 'OH-NO',  cn: '哦不人',  display: 'OH-NO（哦不人）' },
+      { code: 'OJBK',   cn: '无所谓人',display: 'OJBK（佛系随缘型）' },
+      { code: 'POOR',   cn: '贫困者',  display: 'POOR（贫困者）' },
+      { code: 'SEXY',   cn: '尤物',    display: 'SEXY（自信外放型）' },
+      { code: 'SHIT',   cn: '愤世者',  display: 'SHIT（嘴硬心软型）' },
+      { code: 'SOLO',   cn: '孤儿',    display: 'SOLO（独行独立型）' },
+      { code: 'THAN-K', cn: '感恩者',  display: 'THAN-K（感恩者）' },
+      { code: 'THIN-K', cn: '思考者',  display: 'THIN-K（思考者）' },
+      { code: 'WOC!',   cn: '握草人',  display: 'WOC（易惊八卦型）' },
+      { code: 'ZZZZ',   cn: '装死者',  display: 'ZZZ（装死拖延型）' },
+    ];
+
+    // 配对数据：key = 两个类型 code 字典序排序后用 + 连接
+    const PAIR_MATCH = {
+      // 【神仙搭档组】相处无压力，默契拉满
+      'DEAD+SOLO':     { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '互不打扰神仙组合', desc: '你躺平我独处，不用迁就，自在又舒服，主打"安静陪伴，互不打扰"。两个都不想被打扰的人凑在一起，反而是最省心的神仙搭档。' },
+      'MALO+OJBK':     { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '双佛摆烂组合',     desc: '凡事都无所谓，不卷不内耗，一起躺平，幸福感拉满。一个真的随便，一个也是真的随便，两个人加在一起就是绝世摸鱼搭子。' },
+      'GOGO+SEXY':     { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '气场全开组合',     desc: '一个敢展示，一个敢行动，一起搞事情、闯世界，默契十足。两人气场一碰，就能点燃彼此，走到哪里都是全场焦点。' },
+      'IMSB+MUM':      { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '互相救赎组合',     desc: '一个细心照顾，一个敏感内耗，刚好互补，慢慢治愈彼此。妈妈的温柔刚好能接住 IMSB 的内耗，两个人越处越有依靠感。' },
+      'ATM-er+SHIT':   { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '双向奔赴组合',     desc: '一个嘴硬护短，一个默默付出，吵不散、离不开，越处越亲。表面上一个骂骂咧咧，实则心里早就把对方排到第一位了。' },
+
+      // 【欢喜冤家组】吵吵闹闹，却分不开
+      'FUCK+WOC!':     { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '热闹炸街组合',     desc: '一个反骨敢闯，一个一惊一乍，吵吵闹闹却格外合拍，走到哪都是焦点。两人凑在一起，保准鸡飞狗跳但欢声笑语不断。' },
+      'FAKE+JOKE-R':   { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '假面互拆组合',     desc: '一个戴着面具，一个用搞笑伪装，慢慢拆穿彼此，成为最懂对方的人。两个都在用不同方式掩饰自己，却偏偏能看穿对方。' },
+      'GOGO+ZZZZ':     { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '快慢互补组合',     desc: '一个拖拖拉拉，一个雷厉风行，互相督促，既不摆烂也不内耗。GOGO 负责冲，ZZZZ 负责在最后一秒爆发，竟然还挺合拍。' },
+      'ATM-er+FUCK':   { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '相爱相杀组合',     desc: '一个默默付出，一个嘴硬叛逆，看似不合，实则互相牵挂。ATM 付出到底，FUCK 骂骂咧咧，但心里都知道对方不能少。' },
+      'JOKE-R+WOC!':   { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '快乐搭子组合',     desc: '一个爱吃瓜，一个爱搞笑，每天都有新乐子，从不缺话题。WOC 吃瓜吃得生龙活虎，JOKE-R 负责把瓜搞成段子，绝配。' },
+
+      // 【互相折磨组】相爱相杀，磨合才能长久
+      'DEAD+WOC!':     { cat: '互相折磨', catClass: 'cat-3', catEmoji: '⚡', title: '动静反差组合',     desc: '一个安静躺平，一个一惊一乍，偶尔嫌对方吵闹，却又离不开彼此的陪伴。DEAD 嫌 WOC 吵，WOC 嫌 DEAD 无聊，但还是天天黏在一起。' },
+      'FAKE+IMSB':     { cat: '互相折磨', catClass: 'cat-3', catEmoji: '⚡', title: '内耗叠加组合',     desc: '一个自我否定，一个伪装自己，互相猜心思，磨合好了就是灵魂知己。两人都藏着心事，但也许正因如此，才能最终真正读懂对方。' },
+      'GOGO+OJBK':     { cat: '互相折磨', catClass: 'cat-3', catEmoji: '⚡', title: '节奏不合组合',     desc: '一个佛系随缘，一个雷厉风行，需要互相迁就，才能长久相处。GOGO 永远在冲，OJBK 永远在随缘，磨合期可能比较漫长。' },
+      'SEXY+SOLO':     { cat: '互相折磨', catClass: 'cat-3', catEmoji: '⚡', title: '气场碰撞组合',     desc: '一个爱热闹、爱关注，一个爱独处、怕打扰，磨合后能成为彼此的光。两人都有强烈的自我，需要彼此退一步，才能真正靠近。' },
+      'DEAD+JOKE-R':   { cat: '互相折磨', catClass: 'cat-3', catEmoji: '⚡', title: '冷暖反差组合',     desc: '一个用快乐掩饰难过，一个用平静掩饰疲惫，需要多沟通才能读懂彼此。两人都在伪装，但如果有一天能坦诚，会是极度深刻的羁绊。' },
+    };
+
+    function getPairKey(code1, code2) {
+      return [code1, code2].sort().join('+');
+    }
+
+    function populatePairSelects() {
+      const sel1 = document.getElementById('pairType1');
+      const sel2 = document.getElementById('pairType2');
+      const opts = PAIR_TYPES.map(t => `<option value="${t.code}">${t.display}</option>`).join('');
+      sel1.innerHTML = '<option value="">请选择人格</option>' + opts;
+      sel2.innerHTML = '<option value="">请选择人格</option>' + opts;
+    }
+
+    function renderPairResult() {
+      const code1 = document.getElementById('pairType1').value;
+      const code2 = document.getElementById('pairType2').value;
+      const resultBox = document.getElementById('pairResult');
+
+      if (!code1 || !code2) {
+        resultBox.innerHTML = '<div class="pair-unknown"><strong>请先选择双方人格</strong>选择好两种人格后再查看配对结果</div>';
+        resultBox.classList.add('show');
+        return;
+      }
+      if (code1 === code2) {
+        resultBox.innerHTML = '<div class="pair-unknown"><strong>🪞 镜像组合</strong>两个人类型完全一样，是彼此的镜子，最懂对方也最容易内耗，适合互相鼓励、共同成长。</div>';
+        resultBox.classList.add('show');
+        return;
+      }
+
+      const key = getPairKey(code1, code2);
+      const match = PAIR_MATCH[key];
+      const t1 = PAIR_TYPES.find(t => t.code === code1);
+      const t2 = PAIR_TYPES.find(t => t.code === code2);
+
+      if (!match) {
+        resultBox.innerHTML = `
+          <div class="pair-unknown">
+            <strong>🌌 未知领域组合</strong>
+            你们的组合暂未收录在配对库中，也许是宇宙中最独特的组合。<br>
+            <span style="font-size:13px;margin-top:8px;display:block;">试着把配对结果截图发朋友圈，看看朋友怎么说吧 ✨</span>
+          </div>`;
+        resultBox.classList.add('show');
+        return;
+      }
+
+      resultBox.innerHTML = `
+        <div class="pair-result-inner">
+          <div class="pair-category-badge ${match.catClass}">${match.catEmoji} ${match.cat}组</div>
+          <div class="pair-result-title">${match.title}</div>
+          <p class="pair-result-desc">${match.desc}</p>
+          <div class="pair-type-row">
+            <div class="pair-type-card">
+              <div class="pair-type-card-label">我的类型</div>
+              <div class="pair-type-card-code">${t1.code}</div>
+              <div class="pair-type-card-cn">${t1.cn}</div>
+            </div>
+            <div class="pair-type-card">
+              <div class="pair-type-card-label">搭档的类型</div>
+              <div class="pair-type-card-code">${t2.code}</div>
+              <div class="pair-type-card-cn">${t2.cn}</div>
+            </div>
+          </div>
+        </div>`;
+      resultBox.classList.remove('show');
+      void resultBox.offsetWidth; // 触发重绘以重置动画
+      resultBox.classList.add('show');
+    }
+
+    populatePairSelects();
+    if (new URLSearchParams(location.search).get('level') === '2') {
+      document.getElementById('pairTestBtn').style.display = '';
+    }
+    document.getElementById('pairTestBtn').addEventListener('click', () => {
+      document.getElementById('pairResult').classList.remove('show');
+      document.getElementById('pairType1').value = '';
+      document.getElementById('pairType2').value = '';
+      showScreen('pair-test');
+    });
+    document.getElementById('checkPairBtn').addEventListener('click', renderPairResult);
+    document.getElementById('backFromPairBtn').addEventListener('click', () => showScreen('intro'));
   </script>
 
 </body>
