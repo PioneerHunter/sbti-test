@@ -2247,12 +2247,12 @@
     // ===== 双人配对测试 =====
     const PAIR_TYPES = [
       { code: 'ATM-er', cn: '送钱者', display: 'ATM（付出型冤种）' },
-      { code: 'BOSS', cn: '领导者', display: 'BOSS（领导者）' },
-      { code: 'CTRL', cn: '拿捏者', display: 'CTRL（拿捏者）' },
-      { code: 'DEAD', cn: '死者', display: 'DEAD（精神死者型）' },
-      { code: 'Dior-s', cn: '屌丝', display: 'Dior-s（屌丝）' },
-      { code: 'DRUNK', cn: '酒鬼', display: 'DRUNK（酒鬼）' },
-      { code: 'FAKE', cn: '伪人', display: 'FAKE（伪人面具型）' },
+      { code: 'BOSS',   cn: '领导者', display: 'BOSS（领导者）' },
+      { code: 'CTRL',   cn: '拿捏者', display: 'CTRL（拿捏者）' },
+      { code: 'DEAD',   cn: '死者',   display: 'DEAD（精神死者型）' },
+      { code: 'Dior-s', cn: '屌丝',   display: 'Dior-s（屌丝）' },
+      { code: 'DRUNK',  cn: '酒鬼',   display: 'DRUNK（酒鬼）' },
+      { code: 'FAKE',   cn: '伪人',   display: 'FAKE（伪人面具型）' },
       { code: 'FUCK', cn: '草者', display: 'FUCK（反骨叛逆型）' },
       { code: 'GOGO', cn: '行者', display: 'GOGO（行动派达人）' },
       { code: 'HHHH', cn: '傻乐者', display: 'HHHH（傻乐者）' },
@@ -2409,6 +2409,108 @@
 
       // WOC! 的配对
       'WOC!+ZZZZ': { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '八卦装死组', desc: '一惊一乍vs装死，可爱反差。' },
+
+      // BOSS 的配对（含自配对）
+      'BOSS+BOSS':     { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '自我共鸣组', desc: '自己最懂自己，气场稳定。' },
+      'BOSS+CTRL':     { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '强强联手组', desc: '领导遇拿捏，一拍即合。' },
+      'BOSS+Dior-s':   { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '上下反差组', desc: '强势对随性，互补好相处。' },
+      'BOSS+DRUNK':    { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '清醒醉意组', desc: '理性带感性，互相平衡。' },
+      'BOSS+HHHH':     { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '严肃快乐组', desc: '稳重配开心，氛围超稳。' },
+      'BOSS+IMFW':     { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '强扶弱组',   desc: '你靠谱我躺平，被照顾感拉满。' },
+      'BOSS+LOVE-R':   { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '霸道温柔组', desc: '强势又深情，安全感爆棚。' },
+      'BOSS+MONK':     { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '领导静心组', desc: '有冲劲有定力，格局拉满。' },
+      'BOSS+OH-NO':    { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '稳重救场组', desc: '你慌张我兜底，超靠谱。' },
+      'BOSS+POOR':     { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '实力帮扶组', desc: '能力强肯照顾，一路带飞。' },
+      'BOSS+THAN-K':   { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '领导感恩组', desc: '有担当懂珍惜，相处舒服。' },
+      'BOSS+THIN-K':   { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '决策智囊组', desc: '敢拍板善思考，黄金搭档。' },
+
+      // CTRL 的配对（含自配对）
+      'CTRL+CTRL':     { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '自我拿捏组', desc: '自己控自己，极度舒适。' },
+      'CTRL+Dior-s':   { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '拿捏随性组', desc: '克制对自由，互相吸引。' },
+      'CTRL+DRUNK':    { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '清醒微醺组', desc: '理性控感性，不越界。' },
+      'CTRL+HHHH':     { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '拿捏快乐组', desc: '稳重配开心，不闹不乱。' },
+      'CTRL+IMFW':     { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '拿捏摆烂组', desc: '你管着我躺，安稳舒服。' },
+      'CTRL+LOVE-R':   { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '拿捏多情组', desc: '懂分寸懂浪漫，超合拍。' },
+      'CTRL+MONK':     { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '拿捏静心组', desc: '有节制有修行，温和有力。' },
+      'CTRL+OH-NO':    { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '拿捏慌张组', desc: '你慌乱我稳住，靠谱。' },
+      'CTRL+POOR':     { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '拿捏帮扶组', desc: '有规划肯帮衬，越处越好。' },
+      'CTRL+THAN-K':   { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '拿捏感恩组', desc: '懂分寸懂珍惜，默契。' },
+      'CTRL+THIN-K':   { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '拿捏思考组', desc: '控节奏善分析，高效。' },
+
+      // Dior-s 的配对（含自配对）
+      'Dior-s+Dior-s': { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '随性共鸣组', desc: '怎么舒服怎么来。' },
+      'Dior-s+HHHH':   { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '随性快乐组', desc: '怎么玩都开心，无压力。' },
+      'Dior-s+IMFW':   { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '随性摆烂组', desc: '一起躺平，快乐加倍。' },
+      'Dior-s+LOVE-R': { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '随性多情组', desc: '自由又温柔，不黏人。' },
+      'Dior-s+MONK':   { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '随性静心组', desc: '野一点静一点，平衡。' },
+      'Dior-s+OH-NO':  { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '随性慌张组', desc: '你慌我淡定，互补。' },
+      'Dior-s+POOR':   { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '随性知足组', desc: '不攀比，开心最重要。' },
+      'Dior-s+THAN-K': { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '随性感恩组', desc: '简单知足，温柔相处。' },
+      'Dior-s+THIN-K': { cat: '互相折磨', catClass: 'cat-3', catEmoji: '⚡', title: '随性思考组', desc: '想得多做得少，反差。' },
+      'DRUNK+Dior-s':  { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '随性醉意组', desc: '自由对洒脱，快乐至上。' },
+
+      // DRUNK 的配对（含自配对）
+      'DRUNK+DRUNK':   { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '醉意共鸣组', desc: '情绪同频，浪漫自在。' },
+      'DRUNK+HHHH':    { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '醉意快乐组', desc: '微醺加开心，氛围满分。' },
+      'DRUNK+IMFW':    { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '醉意摆烂组', desc: '放松躺平，不用伪装。' },
+      'DRUNK+LOVE-R':  { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '醉意多情组', desc: '感性浪漫，情绪价值拉满。' },
+      'DRUNK+MONK':    { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '醉意静心组', desc: '放纵与克制，互相治愈。' },
+      'DRUNK+OH-NO':   { cat: '互相折磨', catClass: 'cat-3', catEmoji: '⚡', title: '醉意慌张组', desc: '情绪波动大，热闹又拉扯。' },
+      'DRUNK+POOR':    { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '醉意知足组', desc: '不问贫富，开心就好。' },
+      'DRUNK+THAN-K':  { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '醉意感恩组', desc: '感性懂珍惜，温柔。' },
+      'DRUNK+THIN-K':  { cat: '互相折磨', catClass: 'cat-3', catEmoji: '⚡', title: '醉意思考组', desc: '想太多又情绪化，内耗。' },
+
+      // HHHH 的配对（含自配对）
+      'HHHH+HHHH':     { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '快乐共鸣组', desc: '天天开心，没有烦恼。' },
+      'HHHH+IMFW':     { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '快乐摆烂组', desc: '笑着躺平，无忧无虑。' },
+      'HHHH+LOVE-R':   { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '快乐多情组', desc: '开心又温柔，甜度拉满。' },
+      'HHHH+MONK':     { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '快乐静心组', desc: '热闹又安静，治愈。' },
+      'HHHH+OH-NO':    { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '快乐救场组', desc: '你不开心我逗你。' },
+      'HHHH+POOR':     { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '快乐知足组', desc: '穷开心，也是真开心。' },
+      'HHHH+THAN-K':   { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '快乐感恩组', desc: '爱笑懂珍惜，人缘好。' },
+      'HHHH+THIN-K':   { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '快乐思考组', desc: '开心配深沉，互补。' },
+
+      // IMFW 的配对（含自配对）
+      'IMFW+IMFW':     { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '摆烂共鸣组', desc: '一起躺，不卷不内耗。' },
+      'IMFW+LOVE-R':   { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '摆烂多情组', desc: '被宠着爱着，超幸福。' },
+      'IMFW+MONK':     { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '摆烂静心组', desc: '佛系躺平，内心安稳。' },
+      'IMFW+OH-NO':    { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '摆烂救场组', desc: '你慌我稳，互相安抚。' },
+      'IMFW+POOR':     { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '摆烂贫困组', desc: '一起躺平，知足常乐。' },
+      'IMFW+THAN-K':   { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '摆烂感恩组', desc: '简单知足，温柔相处。' },
+      'IMFW+THIN-K':   { cat: '互相折磨', catClass: 'cat-3', catEmoji: '⚡', title: '摆烂思考组', desc: '想得多动得少，内耗。' },
+
+      // LOVE-R 的配对（含自配对）
+      'LOVE-R+LOVE-R': { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '多情共鸣组', desc: '双向温柔，甜度超标。' },
+      'LOVE-R+MONK':   { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '多情静心组', desc: '温柔配淡定，细水长流。' },
+      'LOVE-R+OH-NO':  { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '多情安抚组', desc: '你敏感我呵护，治愈。' },
+      'LOVE-R+POOR':   { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '多情知足组', desc: '有爱就够，不计较物质。' },
+      'LOVE-R+THAN-K': { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '多情感恩组', desc: '懂付出懂珍惜，长久。' },
+      'LOVE-R+THIN-K': { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '多情思考组', desc: '感性理性，互相平衡。' },
+
+      // MONK 的配对（含自配对）
+      'MONK+MONK':     { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '静心共鸣组', desc: '内心平和，无争无求。' },
+      'MONK+OH-NO':    { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '静心安抚组', desc: '你浮躁我淡定，治愈。' },
+      'MONK+POOR':     { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '静心知足组', desc: '淡泊名利，心安即是归处。' },
+      'MONK+THAN-K':   { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '静心感恩组', desc: '温和懂珍惜，相处舒服。' },
+      'MONK+THIN-K':   { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '静心思考组', desc: '深度内心派，灵魂知己。' },
+
+      // OH-NO 的配对（含自配对）
+      'OH-NO+OH-NO':   { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '慌张共鸣组', desc: '一起一惊一乍，热闹。' },
+      'OH-NO+POOR':    { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '慌张知足组', desc: '容易满足，小确幸多。' },
+      'OH-NO+THAN-K':  { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '慌张感恩组', desc: '敏感懂珍惜，心软。' },
+      'OH-NO+THIN-K':  { cat: '互相折磨', catClass: 'cat-3', catEmoji: '⚡', title: '慌张思考组', desc: '想太多易焦虑，内耗。' },
+
+      // POOR 的配对（含自配对）
+      'POOR+POOR':     { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '知足共鸣组', desc: '一起努力，一起开心。' },
+      'POOR+THAN-K':   { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '知足感恩组', desc: '不攀比，懂珍惜。' },
+      'POOR+THIN-K':   { cat: '欢喜冤家', catClass: 'cat-2', catEmoji: '🔥', title: '知足思考组', desc: '务实又清醒，踏实。' },
+
+      // THAN-K 的配对（含自配对）
+      'THAN-K+THAN-K': { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '感恩共鸣组', desc: '双向珍惜，越处越亲。' },
+      'THAN-K+THIN-K': { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '感恩思考组', desc: '懂珍惜有深度，灵魂契合。' },
+
+      // THIN-K 的配对（含自配对）
+      'THIN-K+THIN-K': { cat: '神仙搭档', catClass: 'cat-1', catEmoji: '✨', title: '思考共鸣组', desc: '精神同频，灵魂知己。' },
     };
 
     function getPairKey(code1, code2) {
@@ -2434,9 +2536,12 @@
         return;
       }
       if (code1 === code2) {
-        resultBox.innerHTML = '<div class="pair-unknown"><strong>🪞 镜像组合</strong>两个人类型完全一样，是彼此的镜子，最懂对方也最容易内耗，适合互相鼓励、共同成长。</div>';
-        resultBox.classList.add('show');
-        return;
+        const selfKey = getPairKey(code1, code2);
+        if (!PAIR_MATCH[selfKey]) {
+          resultBox.innerHTML = '<div class="pair-unknown"><strong>🪞 镜像组合</strong>两个人类型完全一样，是彼此的镜子，最懂对方也最容易内耗，适合互相鼓励、共同成长。</div>';
+          resultBox.classList.add('show');
+          return;
+        }
       }
 
       const key = getPairKey(code1, code2);
